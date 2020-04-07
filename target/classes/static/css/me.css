@@ -1,0 +1,408 @@
+@import "animate.css";
+
+body {
+    background: url("../images/concrete-texture.png");
+}
+
+.m-image-swiper-container{
+    overflow: hidden;
+    height: 500px;
+    --swiper-theme-color: red;/* 设置Swiper风格 */
+    --swiper-navigation-size: 30px;/* 设置按钮大小 */
+}
+
+.m-padded-miniX {
+    padding: 0.1em !important;
+}
+
+.m-padded-mini {
+    padding: 0.2em !important;
+}
+
+.m-padded-tiny {
+    padding: 0.3em !important;
+}
+
+.m-padded-tinyX {
+    padding: 0.5em !important;
+}
+
+.m-padded-tb-tiny {
+    padding-left: 0.3em !important;
+    padding-right: 0.3em !important;
+}
+
+.m-padded {
+    padding: 1em !important;
+}
+
+.m-padded-big {
+    padding: 2em !important;
+}
+
+.m-padding-text {
+    padding-left: 2em !important;
+    padding-right: 2em !important;
+}
+
+.m-padded-tb-mini {
+    padding-top: 0.2em !important;
+    padding-bottom: 0.2em !important;
+}
+
+.m-padded-tb-small {
+    padding-top: 0.5em !important;
+    padding-bottom: 0.5em !important;
+}
+
+.m-padded-tb-large {
+    padding-top: 2em !important;
+    padding-bottom: 2em !important;
+}
+
+.m-padded-tb {
+    padding-top: 1em !important;
+    padding-bottom: 1em !important;
+}
+
+.m-padded-t-big {
+    padding-top: 3em !important;
+}
+
+.m-padded-tb-big {
+    padding-top: 3em !important;
+    padding-bottom: 3em !important;
+}
+
+.m-padded-tb-huge {
+    padding-top: 4em !important;
+    padding-bottom: 4em !important;
+}
+
+.m-padded-tb-massive {
+    padding-top: 3em !important;
+    padding-bottom: 1.5em !important;
+}
+
+.m-padded-lr-responsive {
+    padding-left: 4em;
+    padding-right: 4em;
+}
+
+/*----------margin-------*/
+.m-margin-tb-tiny {
+    margin-top: 0.3em !important;
+    margin-bottom: 0.3em !important;
+}
+
+.m-margin-top-small {
+    margin-top: 0.5em !important;
+}
+
+.m-margin-top {
+    margin-top: 1em !important;
+}
+
+.m-margin-top-large {
+    margin-top: 2em !important;
+}
+
+.m-margin-bottom-small {
+     margin-bottom: 0.2em !important;
+ }
+
+.m-margin-bottom {
+    margin-bottom: 2em !important;
+}
+
+.m-margin-right {
+    margin-right: 1em;
+}
+
+.m-swiper{
+    padding-right: 3em;
+    padding-left: 4em;
+    padding-bottom: 2em;
+}
+
+.m-margin-left {
+    margin-left: 1em;
+}
+
+
+/*------text---------*/
+.m-teal {
+    color: #00b5ad !important;
+}
+
+.m-text {
+    font-weight: 300 !important;
+    letter-spacing: 1px !important;
+    line-height: 1.8 !important;
+}
+
+.m-text-thin {
+    font-weight: 300 !important;
+}
+
+.m-text-spaced {
+    letter-spacing: 1px !important;
+}
+
+.m-text-lined {
+    line-height: 1.8 !important;
+}
+
+/*--------透明度----------*/
+.m-opacity-mini {
+    opacity: 0.8 !important;
+}
+
+/*--------- position-------*/
+.m-fixed {
+    position: fixed !important;
+    z-index: 10;
+}
+
+.m-left-center {
+    left: 0 !important;
+    top: 50% !important;
+}
+
+.m-right-bottom {
+    bottom: 5% !important;
+    right: 2% !important;
+    z-index: 100;
+}
+
+.m-right-top {
+    position: absolute;
+    top: 0;
+    right: 0;
+    z-index: 5;
+}
+
+#aboutMe {
+    position: sticky;
+    position: -webkit-sticky;
+    top: 6em !important;
+}
+
+
+/*-------display-------*/
+.m-inline-block {
+    display: inline-block;
+!important;
+}
+
+.m-container {
+    max-width: 85em !important;
+    margin: auto !important;
+}
+
+.m-container-blog {
+    max-width: 100em !important;
+    margin: auto !important;
+}
+
+.m-container-small {
+    max-width: 60em !important;
+    margin: auto !important;
+}
+
+/*shadow*/
+.m-shadow-small {
+    -webkit-box-shadow: 0 4px 10px rgba(0, 0, 0, 0.4) ! important;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.4) ! important;
+}
+
+.m-tbody-tr {
+    height: 70px;
+}
+
+/*颜色*/
+.m-color-black {
+    color: #333 !important;
+}
+
+/*-----------*/
+.m-mobile-show {
+    display: none !important;
+}
+
+.m-nav {
+    position: fixed !important;
+    width: 100% !important;
+    height: 5em !important;
+    top: 0 !important;
+    left: 0 !important;
+    z-index: 30 !important;
+    transition: all 0.5s ease !important;
+}
+
+.m-blank {
+    height: 5em !important;
+}
+@media screen and (max-width: 768px) {
+    .m-mobile-show {
+        display: block !important;
+    }
+
+    .m-image-swiper-container{
+        overflow: hidden;
+        height: 200px;
+        --swiper-theme-color: blue;/* 设置Swiper风格 */
+        --swiper-navigation-size: 30px;/* 设置按钮大小 */
+    }
+
+    .m-mobile-hide {
+        display: none !important;
+    }
+
+    .m-mobile-wide {
+        width: 100% !important;
+    }
+
+    .m-blank {
+        height: 0 !important;
+    }
+
+    .m-nav {
+        position: static !important;
+        width: 100% !important;
+        height: auto !important;
+        z-index: 30 !important;
+    }
+
+    .m-padded-lr-responsive {
+        padding-left: 0 !important;
+        padding-right: 0 !important;
+    }
+}
+
+/*bootstrSetting*/
+.pl-4, .px-4 {
+    padding-left: 1.5rem !important;
+}
+
+.pt-4, .py-4 {
+    padding-top: 1.5rem !important;
+}
+
+*, ::after, ::before {
+    box-sizing: border-box;
+}
+
+/*目录链接前面的修饰*/
+#catalogs p a:before {
+    content: "";
+    display: block;
+    position: absolute;
+    top: -.2rem;
+    left: -1.125rem;
+    height: 0.75rem;
+    width: 0.75rem;
+    border-left: 1px solid #e7e7eb;
+    border-bottom: 1px solid #e7e7eb;
+}
+
+/*目录链接前面的修饰*/
+#catalogs p a:after {
+    content: "";
+    display: block;
+    position: absolute;
+    top: 0.5500rem;
+    left: -1.125rem;
+    height: 1.25rem;
+    width: 0.75rem;
+    border-left: 1px solid #e7e7eb;
+}
+
+/*目录行高*/
+#catalogs p {
+    line-height: 1rem;
+}
+
+/*目录超出盒子的处理*/
+#catalogs {
+    overflow-y: auto;
+}
+
+#catalogs {
+    max-height: 550px;
+}
+
+.catalog-active {
+    color: #dc3545 !important;
+}
+
+#catalogs p a:link {
+
+}
+
+#catalogs p a:visited {
+    color: #00ff00 !important;
+}
+
+#catalogs p a:hover {
+    color: #dc3545 !important;
+}
+
+/*目录的链接样式*/
+#catalogs p a {
+    color: #333333;
+    text-decoration: none;
+    position: relative;
+}
+
+#catalogs {
+    padding-bottom: 15px;
+    overflow-y: auto;
+}
+
+#catalogs {
+    font-size: medium;
+    font-family: "Courier New", -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Helvetica Neue", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+}
+
+.m-label-show {
+    display: block;
+}
+
+.m-label-hidden {
+    display: none;
+}
+
+.m-padded-3{
+    padding-left: 0;
+    padding-top: 0;
+    padding-bottom: 0;
+}
+
+.swiper-container{
+    --swiper-theme-color: teal;/* 设置Swiper风格 */
+    --swiper-navigation-size: 30px;/* 设置按钮大小 */
+}
+
+.m-swiper-container{
+    overflow: hidden;
+    height: 20px;
+    width: 100%;
+}
+
+.swiper-slide img{
+    width: 100%;
+    height: auto;
+}
+
+.overlay {
+    background-color: #FFFFFF;
+    padding: 0;
+    box-shadow: 0 0 0 rgba(0, 0, 0, 0);
+    transition: all 0.5s ease;
+}
+/* change style */
+.fixed.overlay {
+    position: fixed;
+    padding: 1em;
+}

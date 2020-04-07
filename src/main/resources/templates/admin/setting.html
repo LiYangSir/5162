@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="admin/_fragments :: head(~{::title})">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>个人资料</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/semantic-ui@2.4.2/dist/semantic.min.css">
+    <link rel="stylesheet" href="../../static/css/me.css">
+</head>
+<body>
+
+<!--导航-->
+<nav th:replace="admin/_fragments :: menu(0, ${session.navQuery})" class="ui inverted attached segment m-padded-tb-mini m-shadow-small" style="z-index: 15">
+    <div class="ui container">
+        <div class="ui secondary inverted stackable menu">
+            <h2 class="ui header teal item">5162 后台管理</h2>
+            <a href="#" class="m-item active item m-mobile-hide"><i class="mini home icon"></i> &ensp;博客</a>
+            <a href="#" class="m-item item m-mobile-hide"><i class="mini idea icon"></i> &ensp;分类</a>
+            <a href="#" class="m-item item m-mobile-hide"><i class="mini tags icon"></i> &ensp;标签</a>
+            <div class="right m-item menu m-mobile-hide">
+                <div class="ui hidden divider"></div>
+                <div class="ui floating dropdown item">
+                    <div class="text">
+                        <img src="https://picsum.photos/id/1/100/100?image=1" alt="" class="ui avatar image">UserName
+                    </div>
+                    <i class="dropdown icon"></i>
+                    <div class="menu">
+                        <a href="#" class="item"><i class="blue mini user icon"></i>个人资料</a>
+                        <a href="#" class="item" th:href="@{/admin/logout}"><i class="blue mini power icon"></i>退出登录</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <a href="#" class="ui menu toggle black icon button m-right-top m-mobile-show">
+        <i class="sidebar icon"></i>
+    </a>
+</nav>
+<div class="ui container m-margin-top-large">
+    <div class="ui stackable grid">
+        <!--  左边内容-->
+        <div class="five wide column m-margin-top-large">
+            <div class="ui card">
+                <div class="image">
+                    <form action="/admin/setting/avatar" method="post" class="form upAvatar" enctype="multipart/form-data">
+                        <input type="file" id="userAvatar" name="userAvatar" onchange="loadSuccess()" style="display: none" >
+                    </form>
+                    <img src="../../static/images/icon.png" th:src="@{${setting.getAvatar()}}" id="avatar" onclick="document.getElementById('userAvatar').click()" style="cursor: pointer">
+                </div>
+                <div class="ui custom popup">
+                    点击修改头像
+                </div>
+                <div class="content">
+                    <a class="header" th:text="${setting.nickName}">曲怪曲怪</a>
+                    <div class="meta">
+                        <span class="date">Joined in <span th:text="${#dates.format(setting.getCreateTime(), 'yyyy')}">2014</span></span>
+                    </div>
+                    <div class="description" th:text="${setting.selfIntroduction}">
+                        喜欢把分享当成乐趣
+                    </div>
+                </div>
+                <div class="extra content">
+                    <a>
+                        <i class="user icon"></i>
+                        文章已发布<span th:text="${countBlog}">12</span>篇
+                    </a>
+                </div>
+            </div>
+        </div>
+        <!--   右边标签-->
+        <div class="eleven wide column">
+            <div class="ui success message" th:unless="${#strings.isEmpty(message)}">
+                <i class="close icon"></i>
+                <div class="header">提示：</div>
+                <p th:text="${message}">恭喜操作成功</p>
+            </div>
+            <div class="ui raised segment">
+                    <div class="ui pointing menu">
+                        <a id="selfMessage" class="active item" href="#"><i class="user icon"></i>个人信息</a>
+                        <a id="userPassword" class="item" href="#"><i class="lock icon"></i>密码</a>
+                    </div>
+                <form action="#" class="ui form error" th:object="${setting}" method="post" th:action="@{/admin/setting}">
+                    <input type="hidden" name="id" th:value="*{id}">
+                    <div id="label-message" class="ui secondary segment form m-padded-big m-label-show" >
+                            <div class="ui stackable fluid middle aligned grid">
+                                <div class="ui container">
+                                    <div class="ui fluid required field">
+                                        <div class="m-padded-tb">用户名：</div>
+                                        <input type="text" class="ui" placeholder="用户名" name="userName" th:value="*{userName}">
+
+                                        <div class="m-padded-tb">昵称：</div>
+                                        <input type="text" class="ui" placeholder="昵称" name="nickName" th:value="*{nickName}">
+
+                                        <div class="m-padded-tb">邮箱：</div>
+                                        <input type="email" class="ui" placeholder="邮箱" name="email" th:value="*{email}">
+                                    </div>
+                                    <div class="m-padded-tb">个人简介：</div>
+                                    <textarea type="text" class="ui" placeholder="个人简介" name="selfIntroduction" th:text="*{selfIntroduction}"></textarea>
+                                    <button class="ui submit button m-margin-top-large blue">保存</button>
+                                </div>
+                            </div>
+                        </div>
+                    <div class="ui error message"></div>
+                </form>
+                <form action="#" class="ui form error" th:object="${setting}" method="post" th:action="@{/admin/setting/password}">
+                    <div id="label-password" class="ui secondary segment form m-padded-big m-label-hidden" >
+                        <div class="ui stackable fluid middle aligned grid">
+                            <div class="ui container">
+                                <div class="required fluid field">
+                                    <div class="m-padded-tb">&emsp;原密码：</div>
+                                    <input type="password" class="ui" placeholder="原密码" name="oldPassword">
+                                    <div class="m-padded-tb">&emsp;新密码：</div>
+                                    <input type="password" class="ui" placeholder="新密码" name="newPassword">
+                                    <div class="m-padded-tb">&emsp;确认密码：</div>
+                                    <input type="password" class="ui" placeholder="确认密码" name="newPasswordEdit">
+                                </div>
+                            </div>
+                            <button class="ui submit button blue" style="margin: 20px">提交</button>
+                        </div>
+                    </div>
+                    <div class="ui error message"></div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<br>
+
+<!--/*/<th:block th:replace="admin/_fragments :: script">/*/-->
+<script src="https://cdn.jsdelivr.net/npm/jquery@3.2/dist/jquery.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/semantic-ui@2.4.2/dist/semantic.min.js"></script>
+<!--<script src="//cdn.jsdelivr.net/npm/jquery.scrollto@2.1.2/jquery.scrollTo.min.js"></script>-->
+<!--/*/</th:block>/*/-->
+
+<script>
+    $('.menu.toggle').click(function () {
+        $('.m-item').toggleClass('m-mobile-hide')
+    });
+    $('#userPassword').click(function () {
+        $('#selfMessage').removeClass("active");
+        $('#userPassword').addClass("active");
+
+        $('#label-message').removeClass('m-label-show');
+        $('#label-message').addClass('m-label-hidden');
+
+        $('#label-password').removeClass('m-label-hidden');
+        $('#label-password').addClass('m-label-show');
+
+    });
+    $('#selfMessage').click(function () {
+        $('#userPassword').removeClass("active");
+        $('#selfMessage').addClass("active");
+
+        $('#label-message').removeClass('m-label-hidden');
+        $('#label-message').addClass('m-label-show');
+
+        $('#label-password').removeClass('m-label-show');
+        $('#label-password').addClass('m-label-hidden');
+    });
+
+    function loadSuccess() {
+        $('.form.upAvatar').submit();
+        // var file = document.getElementById("userAvatar");
+        // var filePath = file.value;
+        // var fileName = filePath.substring(filePath.lastIndexOf('\\')+1); //文件名
+    }
+
+    $('.ui.form')
+        .form({
+            on: 'blur',
+            fields: {
+                match: {
+                    identifier  : 'newPassword',
+                    rules: [
+                        {
+                            type   : 'match[newPasswordEdit]',
+                            prompt : '请输入相同密码'
+                        }
+                    ]
+                },
+                password:{
+                    identifier: 'oldPassword',
+                    rules: [{
+                        type: 'empty',
+                        prompt: '密码不能为空'
+                    }]
+                },
+                newPassword:{
+                    identifier: 'newPassword',
+                    rules: [{
+                        type: 'empty',
+                        prompt: '密码不能为空'
+                    },
+                    {
+                        type   : 'minLength[6]',
+                        prompt : '密码要求至少6位'
+                    }]
+                },
+                newPasswordEdit:{
+                    identifier: 'newPasswordEdit',
+                    rules: [{
+                        type: 'empty',
+                        prompt: '密码不能为空'
+                    }]
+                },
+                userName:{
+                    identifier: 'userName',
+                    rules: [{
+                        type: 'empty',
+                        prompt: '用户名不能为空'
+                    }]
+                },
+                nickName:{
+                    identifier: 'nickName',
+                    rules: [{
+                        type: 'empty',
+                        prompt: '昵称不能为空'
+                    }]
+                },
+                email:{
+                    identifier: 'email',
+                    rules: [{
+                        type: 'empty',
+                        prompt: '邮箱不能为空'
+                    }]
+                }
+
+            }
+        }
+        );
+    $('.message .close')
+        .on('click', function() {
+            $(this)
+                .closest('.message')
+                .transition('fade');
+        });
+
+    $('#avatar')
+        .popup({
+            popup : $('.custom.popup'),
+            on    : 'hover',
+            position : 'left center'
+        });
+</script>
+</body>
+</html>

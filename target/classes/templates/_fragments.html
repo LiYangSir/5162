@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head th:fragment="head(title)" >
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title th:replace="${title}">详情</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/semantic-ui@2.4.2/dist/semantic.min.css">
+    <link rel="stylesheet" href="../static/css/me.css" th:href="@{/css/me.css}">
+    <link rel="stylesheet" href="../static/css/typo.css" th:href="@{/css/typo.css}">
+    <link rel="stylesheet" href="../static/css/animate.css" th:href="@{/css/animate.css}">
+    <link rel="stylesheet" href="../static/lib/prism/prism.css" th:href="@{/lib/prism/prism.css}">
+    <link rel="stylesheet" href="../static/lib/tocbot/tocbot.css" th:href="@{/lib/tocbot/tocbot.css}">
+    <link rel="Shortcut Icon" href="../static/images/icon.png" type="image/x-icon" th:href="@{/images/icon.png}"/>
+    <link rel="stylesheet" href="https://unpkg.com/swiper/css/swiper.min.css">
+
+</head>
+<body>
+<nav th:fragment="menu(n)" class="m-nav ui inverted attached segment m-padded-tb-mini m-shadow-small">
+    <div class="ui container">
+        <div class="ui secondary inverted stackable menu">
+            <a href="/" th:href="@{/}" class=""><h2 class="ui header teal item">5162</h2></a>
+            <a href="#" th:href="@{/}" class="m-item item m-mobile-hide" th:classappend="${n==1} ? 'active'"><i class="mini home icon"></i> &ensp;首页</a>
+            <a href="#" th:href="@{/types/-1}" class="m-item item m-mobile-hide"  th:classappend="${n==2} ? 'active'"><i class="mini idea icon"></i> &ensp;分类</a>
+            <a href="#" th:href="@{/tags/-1}" class="m-item item m-mobile-hide" th:classappend="${n==3} ? 'active'"><i class="mini tags icon"></i> &ensp;标签</a>
+            <a href="#" th:href="@{/archives}" class="m-item item m-mobile-hide" th:classappend="${n==4} ? 'active'"><i class="mini clone icon"></i> &ensp;归档</a>
+            <a href="#" th:href="@{/about}" class="m-item item m-mobile-hide" th:classappend="${n==5} ? 'active'"><i class="mini info icon"></i> &ensp;关于 5162</a>
+            <div class="right m-item item m-mobile-hide">
+                <form name="search" action="#" th:action="@{/search}" method="post" target="_blank">
+                    <div class="ui icon inverted transparent input">
+                        <input name="query" type="text" placeholder="Search..." th:value="${query}">
+                        <i class="search link icon" onclick="document.forms['search'].submit()"></i>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    <a href="#" class="ui menu toggle black icon button m-right-top m-mobile-show">
+        <i class="sidebar icon"></i>
+    </a>
+</nav>
+
+<footer th:fragment="footer" class="ui vertical inverted segment m-padded-tb-massive">
+    <div class="ui center aligned container">
+        <div class="ui inverted divided stackable grid">
+            <div class="five wide column" >
+                <h4 class="ui inverted header">最新文章</h4>
+                <div id="newblog-container">
+                    <div class="ui inverted link list" th:fragment="newBlogList">
+                        <a href="#" th:href="@{/blog/{id}(id=${blog.id})}" target="_blank" class="item" th:each="blog : ${newblogs}" th:text="${blog.title}">用户故事</a>
+                    </div>
+                </div>
+
+            </div>
+            <div class="five wide column">
+                <h4 class="ui inverted header">友情链接</h4>
+                <div class="ui inverted link list">
+                    <div class="ui padded">
+                        <a href="#"  th:href="@{#{friendLink.href1}}" target="_blank" class="item" th:text="#{friendLink.index1}">哈工程图书馆</a>&emsp;
+                        <a href="#"  th:href="@{#{friendLink.href2}}" target="_blank" class="item" th:text="#{friendLink.index2}">哈工程图书馆</a>&emsp;
+                        <br>
+                        <a href="#"  th:href="@{#{friendLink.href3}}" target="_blank" class="m-margin-top item" th:text="#{friendLink.index3}">哈工程图书馆</a>&emsp;
+                        <a href="#"  th:href="@{#{friendLink.href4}}" target="_blank" class="m-margin-top item" th:text="#{friendLink.index4}">哈工程图书馆</a>&emsp;
+                    </div>
+                </div>
+            </div>
+            <div class="six wide column left aligned">
+                <h4 class="ui inverted header center aligned">5162 简介</h4>
+                <p class="item m-opacity-mini" th:text="#{selfIntroduction}">5162 是一个大家庭，牛人齐聚一堂。这里欢迎大家的加入。嘿嘿哈嘿!!!</p>
+            </div>
+        </div>
+        <div class="ui inverted section divider"></div>
+        <p class="m-text-thin m-text-spaced m-opacity-mini">Copyright © 2020 - 2020 &nbsp;&nbsp; <b class="ui header red">5162</b> &nbsp;&nbsp;Designed by LiYang</p>
+        <span id="busuanzi_container_site_uv" style='display:none'>本站总访客数 <span id="busuanzi_value_site_uv" style="color:	#7FFFD4; font-size: large"></span> 人 | </span>
+        <span id="busuanzi_container_site_pv" style='display:none'>本站总访问量 <span id="busuanzi_value_site_pv" style="color:	#7FFFD4; font-size: large"></span> 次</span>
+    </div>
+</footer>
+
+<th:block th:fragment="script">
+    <script src="https://cdn.jsdelivr.net/npm/jquery@3.2/dist/jquery.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/semantic-ui@2.4.2/dist/semantic.min.js"></script>
+    <script src="../static/lib/prism/prism.js" th:src="@{/lib/prism/prism.js}"></script>
+    <script src="../static/lib/tocbot/tocbot.min.js" th:src="@{/lib/tocbot/tocbot.min.js}"></script>
+    <script src="../static/lib/waypoints/jquery.waypoints.min.js" th:src="@{/lib/waypoints/jquery.waypoints.min.js}"></script>
+    <script src="../static/js/post.js" th:src="@{/js/post.js}"></script>
+    <script src="//cdn.jsdelivr.net/npm/jquery.scrollto@2.1.2/jquery.scrollTo.min.js"></script>
+    <script src="../static/lib/qrcode/qrcode.min.js" th:src="@{/lib/qrcode/qrcode.min.js}"></script>
+    <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+    <script src="https://unpkg.com/swiper/js/swiper.min.js"> </script>
+    <script>
+        $('.menu.toggle').click(function () {
+            $('.m-item').toggleClass('m-mobile-hide');
+        });
+        $('#newblog-container').load(/*[[@{/footer/newblog}]]*/"/footer/newblog");
+
+    </script>
+
+</th:block>
+
+
+
+</body>
+</html>

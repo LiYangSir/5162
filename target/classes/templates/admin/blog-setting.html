@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="admin/_fragments :: head(~{::title})">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>博客设置</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/semantic-ui@2.4.2/dist/semantic.min.css">
+    <link rel="stylesheet" href="../../static/css/me.css">
+</head>
+<body>
+
+<!--导航-->
+<nav th:replace="admin/_fragments :: menu(4, ${session.navQuery})" class="ui inverted attached segment m-padded-tb-mini m-shadow-small" style=" position: fixed;width: 100%;height:5em;top: 0;left: 0; z-index: 4">
+    <div class="ui container">
+        <div class="ui secondary inverted stackable menu">
+            <h2 class="ui header teal item">5162 后台管理</h2>
+            <a href="#" class="m-item active item m-mobile-hide"><i class="mini home icon"></i> &ensp;博客</a>
+            <a href="#" class="m-item item m-mobile-hide"><i class="mini idea icon"></i> &ensp;分类</a>
+            <a href="#" class="m-item item m-mobile-hide"><i class="mini tags icon"></i> &ensp;标签</a>
+            <div class="right m-item menu m-mobile-hide">
+                <div class="ui hidden divider"></div>
+                <div class="ui floating dropdown item">
+                    <div class="text">
+                        <img src="https://picsum.photos/id/1/100/100?image=1" alt="" class="ui avatar image">UserName
+                    </div>
+                    <i class="dropdown icon"></i>
+                    <div class="menu">
+                        <a href="#" class="item"><i class="blue mini user icon"></i>个人资料</a>
+                        <a href="#" class="item" th:href="@{/admin/logout}"><i class="blue mini power icon"></i>退出登录</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <a href="#" class="ui menu toggle black icon button m-right-top m-mobile-show">
+        <i class="sidebar icon"></i>
+    </a>
+</nav>
+<div class="ui container m-margin-top-large">
+    <div class="ui stackable grid">
+        <div class="ui raised segment">
+                <div class="ui pointing menu">
+                    <a id="selfMessage" class="active item" href="#"><i class="user icon"></i>常规设置</a>
+                    <a id="userPassword" class="item" href="#"><i class="lock icon"></i>特殊设置</a>
+                </div>
+
+            <form action="#" class="ui form error" method="post">
+                <input type="hidden" name="id" th:value="null">
+                <div id="label-message" class="ui secondary segment form m-padded-big m-label-show" >
+                    <div class="ui stackable fluid middle aligned grid">
+                        <div class="ui container">
+                            <div class="ui fluid field">
+                            </div>
+                            <button class="ui submit button m-margin-top-large blue">保存</button>
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+
+<br>
+
+<!--/*/<th:block th:replace="admin/_fragments :: script">/*/-->
+<script src="https://cdn.jsdelivr.net/npm/jquery@3.2/dist/jquery.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/semantic-ui@2.4.2/dist/semantic.min.js"></script>
+<!--<script src="//cdn.jsdelivr.net/npm/jquery.scrollto@2.1.2/jquery.scrollTo.min.js"></script>-->
+<!--/*/</th:block>/*/-->
+
+<script>
+
+    $('.menu.toggle').click(function () {
+        $('.m-item').toggleClass('m-mobile-hide')
+    });
+    $('#userPassword').click(function () {
+        $('#selfMessage').removeClass("active");
+        $('#userPassword').addClass("active");
+
+        $('#label-message').removeClass('m-label-show');
+        $('#label-message').addClass('m-label-hidden');
+
+        $('#label-password').removeClass('m-label-hidden');
+        $('#label-password').addClass('m-label-show');
+
+    });
+    $('#selfMessage').click(function () {
+        $('#userPassword').removeClass("active");
+        $('#selfMessage').addClass("active");
+
+        $('#label-message').removeClass('m-label-hidden');
+        $('#label-message').addClass('m-label-show');
+
+        $('#label-password').removeClass('m-label-show');
+        $('#label-password').addClass('m-label-hidden');
+    });
+
+    function loadSuccess() {
+        $('.form.upAvatar').submit();
+        // var file = document.getElementById("userAvatar");
+        // var filePath = file.value;
+        // var fileName = filePath.substring(filePath.lastIndexOf('\\')+1); //文件名
+    }
+
+    $('.ui.form')
+        .form({
+            on: 'blur',
+            fields: {
+                match: {
+                    identifier  : 'newPassword',
+                    rules: [
+                        {
+                            type   : 'match[newPasswordEdit]',
+                            prompt : '请输入相同密码'
+                        }
+                    ]
+                },
+                password:{
+                    identifier: 'oldPassword',
+                    rules: [{
+                        type: 'empty',
+                        prompt: '密码不能为空'
+                    }]
+                },
+                newPassword:{
+                    identifier: 'newPassword',
+                    rules: [{
+                        type: 'empty',
+                        prompt: '密码不能为空'
+                    }]
+                },
+                newPasswordEdit:{
+                    identifier: 'newPasswordEdit',
+                    rules: [{
+                        type: 'empty',
+                        prompt: '密码不能为空'
+                    }]
+                },
+                userName:{
+                    identifier: 'userName',
+                    rules: [{
+                        type: 'empty',
+                        prompt: '用户名不能为空'
+                    }]
+                },
+                nickName:{
+                    identifier: 'nickName',
+                    rules: [{
+                        type: 'empty',
+                        prompt: '昵称不能为空'
+                    }]
+                },
+                email:{
+                    identifier: 'email',
+                    rules: [{
+                        type: 'empty',
+                        prompt: '邮箱不能为空'
+                    }]
+                }
+
+            }
+        }
+        );
+    $('.message .close')
+        .on('click', function() {
+            $(this)
+                .closest('.message')
+                .transition('fade');
+        });
+
+    $('#avatar')
+        .popup({
+            popup : $('.custom.popup'),
+            on    : 'hover',
+            position : 'left center'
+        });
+</script>
+</body>
+</html>

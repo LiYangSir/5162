@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head th:fragment="head(title)">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title th:replace="${title}">详情</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/semantic-ui@2.4.2/dist/semantic.min.css">
+    <link rel="stylesheet" href="../static/css/me.css" th:href="@{/css/me.css}">
+    <link rel="stylesheet" href="../static/css/typo.css" th:href="@{/css/typo.css}">
+    <link rel="stylesheet" href="../static/css/animate.css" th:href="@{/css/animate.css}">
+    <link rel="stylesheet" href="../static/lib/prism/prism.css" th:href="@{/lib/prism/prism.css}">
+    <link rel="stylesheet" href="../static/lib/tocbot/tocbot.css" th:href="@{/lib/tocbot/tocbot.css}">
+    <link rel="stylesheet" href="../../static/lib/editormd/css/editormd.min.css" th:href="@{/lib/editormd/css/editormd.min.css}">
+    <link rel="Shortcut Icon" href="../static/images/icon.png" type="image/x-icon" th:href="@{/images/icon.png}"/>
+</head>
+<body>
+<nav th:fragment="menu(n, navQuery)" class="ui inverted attached segment m-padded-tb-mini m-shadow-small" style="z-index: 15">
+    <div class="ui container">
+        <div class="ui secondary inverted stackable menu">
+            <h2 class="ui header teal item">5162 后台管理</h2>
+            <div class="ui floating dropdown m-item m-mobile-hide item">
+                <i class="mini home icon"></i> &ensp;博客
+                <div class="ui menu">
+                    <a href="#" class="item" th:href="@{/admin/blogs}"><i class="blue mini user icon"></i>所有博客</a>
+                    <a href="#" class="item" th:href="@{/admin/blogs/input}"><i class="blue mini power icon"></i>写博客</a>
+                    <a href="#" class="item" th:href="@{/admin/notices}" th:if="${navQuery.isTeacher()} or ${navQuery.isRoot()}"><i class="blue mini power icon"></i>所有公告</a>
+                    <a href="#" class="item" th:href="@{/admin/notices/input}" th:if="${navQuery.isTeacher()} or ${navQuery.isRoot()}"><i class="blue mini power icon"></i>写公告</a>
+                </div>
+            </div>
+            <a href="#" th:href="@{/admin/types}" class="m-item item m-mobile-hide" th:classappend="${n==2} ? 'active'"><i class="mini idea icon"></i> &ensp;分类</a>
+            <a href="#" th:href="@{/admin/tags}" class="m-item item m-mobile-hide" th:classappend="${n==3} ? 'active'"><i class="mini tags icon"></i> &ensp;标签</a>
+            <a href="#" th:href="@{/admin/blogsetting}" class="m-item item m-mobile-hide" th:classappend="${n==4} ? 'active'" th:if="${username} == '李扬'"><i class="mini tags icon"></i> &ensp;博客设置</a>
+            <div class="right m-item menu m-mobile-hide">
+                <a href="/" target="_blank" class="item"><i class="linkify icon"></i></a>
+                <div class="ui dropdown item">
+                    <div class="text">
+                        <img src="https://picsum.photos/id/1/100/100?image=1" th:src="@{${navQuery.getAvatar()}}" alt="" class="ui avatar image" th:text="${navQuery.getUserName()}">
+                    </div>
+                    <i class="dropdown icon"></i>
+                    <div class="menu">
+                        <a href="#" class="item" th:href="@{/admin/setting}"><i class="blue mini user icon"></i>个人资料</a>
+                        <a href="#" class="item" th:href="@{/admin/logout}"><i class="blue mini power icon"></i>退出登录</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <a href="#" class="ui menu toggle black icon button m-right-top m-mobile-show">
+        <i class="sidebar icon"></i>
+    </a>
+</nav>
+
+<footer th:fragment="footer" class="ui vertical inverted segment m-padded-tb-massive">
+    <div class="ui center aligned container">
+        <div class="ui inverted divided stackable grid">
+            <div class="five wide column">
+                <h4 class="ui inverted header">最新文章</h4>
+                <div class="ui inverted link list">
+                    <a href="#" class="item">用户故事（User Story）</a>
+                    <a href="#" class="item">Java 学习路径推荐</a>
+                    <a href="#" class="item">用户故事（User Story）</a>
+                </div>
+            </div>
+            <div class="five wide column">
+                <h4 class="ui inverted header">友情链接</h4>
+                <div class="ui inverted link list">
+                    <div class="ui">
+                        <a href="#" class="item">哈工程图书馆</a>
+                        &nbsp;
+                        <a href="#" class="item">校园网主页</a>
+                    </div>
+                    <a href="#" class="item">事务处理</a>
+                </div>
+            </div>
+            <div class="six wide column left aligned">
+                <h4 class="ui inverted header center aligned">5162 简介</h4>
+                <p class="item m-opacity-mini">5162 是一个大家庭，牛人齐聚一堂。这里欢迎大家的加入。嘿嘿哈嘿!!!</p>
+            </div>
+        </div>
+        <div class="ui inverted section divider"></div>
+        <p class="m-text-thin m-text-spaced m-opacity-mini">Copyright © 2020 - 2020 &nbsp;&nbsp; <b class="ui header red">5162</b> &nbsp;&nbsp;Designed by LiYang</p>
+    </div>
+</footer>
+
+<th:block th:fragment="script">
+    <script src="https://cdn.jsdelivr.net/npm/jquery@3.2/dist/jquery.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/semantic-ui@2.4.2/dist/semantic.min.js"></script>
+    <script src="../static/lib/prism/prism.js" th:src="@{/lib/prism/prism.js}"></script>
+    <script src="../static/lib/tocbot/tocbot.min.js" th:src="@{/lib/tocbot/tocbot.min.js}"></script>
+    <script src="../static/lib/waypoints/jquery.waypoints.min.js" th:src="@{/lib/waypoints/jquery.waypoints.min.js}"></script>
+    <script src="../static/js/post.js" th:src="@{/js/post.js}"></script>
+    <script src="//cdn.jsdelivr.net/npm/jquery.scrollto@2.1.2/jquery.scrollTo.min.js"></script>
+    <script src="../../static/lib/editormd/editormd.min.js" th:src="@{/lib/editormd/editormd.min.js}"></script>
+</th:block>
+
+
+
+</body>
+</html>

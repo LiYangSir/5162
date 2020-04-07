@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="_fragments :: head(~{::title})">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale">
+    <title>500</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/semantic-ui@2.4.2/dist/semantic.min.css">
+    <link rel="stylesheet" href="../../static/css/me.css">
+</head>
+<body>
+
+<!--导航-->
+<nav th:replace="_fragments :: menu(0)" class="ui inverted attached segment m-padded-tb-mini m-shadow-small" style=" position: fixed;width: 100%;height:5em;top: 0;left: 0; z-index: 4">
+    <div class="ui container">
+        <div class="ui secondary inverted stackable menu">
+            <h2 class="ui header teal item">5162</h2>
+            <a href="#" class="m-item item m-mobile-hide"><i class="mini home icon"></i> &ensp;首页</a>
+            <a href="#" class="m-item item m-mobile-hide"><i class="mini idea icon"></i> &ensp;分类</a>
+            <a href="#" class="m-item item m-mobile-hide"><i class="mini tags icon"></i> &ensp;标签</a>
+            <a href="#" class="m-item item m-mobile-hide"><i class="mini clone icon"></i> &ensp;归档</a>
+            <a href="#" class="m-item item m-mobile-hide"><i class="mini info icon"></i> &ensp;关于 5162</a>
+            <div class="right m-item item m-mobile-hide">
+                <div class="ui icon inverted transparent input">
+                    <input type="text" placeholder="Search...">
+                    <i class="search link icon"></i>
+                </div>
+            </div>
+        </div>
+    </div>
+    <a href="#" class="ui menu toggle black icon button m-right-top m-mobile-show">
+        <i class="sidebar icon"></i>
+    </a>
+</nav>
+<div style="height: 5em"></div>
+<br>
+<br>
+<br>
+
+<div class="m-container-small m-padded-tb-massive">
+    <div class="ui error message m-padded-tb-huge">
+        <div class="ui container">
+            <h2>500</h2>
+            <p>您访问的资源不存在</p>
+        </div>
+    </div>
+
+</div>
+
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<footer th:replace="_fragments :: footer" class="ui vertical inverted segment m-padded-tb-massive">
+    <div class="ui center aligned container">
+        <div class="ui inverted divided stackable grid">
+            <div class="five wide column">
+                <h4 class="ui inverted header">最新文章</h4>
+                <div class="ui inverted link list">
+                    <a href="#" class="item">用户故事（User Story）</a>
+                    <a href="#" class="item">用户故事（User Story）</a>
+                    <a href="#" class="item">用户故事（User Story）</a>
+                </div>
+            </div>
+            <div class="five wide column">
+                <h4 class="ui inverted header">友情链接</h4>
+                <div class="ui inverted link list">
+                    <div class="ui">
+                        <a href="#" class="item">哈工程图书馆</a>
+                        &nbsp;
+                        <a href="#" class="item">校园网主页</a>
+                    </div>
+                    <a href="#" class="item">事务处理</a>
+                </div>
+            </div>
+            <div class="six wide column left aligned">
+                <h4 class="ui inverted header center aligned">5162 简介</h4>
+                <p class="item m-opacity-mini">5162 是一个大家庭，牛人齐聚一堂。这里欢迎大家的加入。嘿嘿哈嘿!!!</p>
+            </div>
+        </div>
+        <div class="ui inverted section divider"></div>
+        <p class="m-text-thin m-text-spaced m-opacity-mini">Copyright © 2020 - 2020 &nbsp;&nbsp; <b class="ui header red">5162</b> &nbsp;&nbsp;Designed by LiYang</p>
+    </div>
+</footer>
+
+</body>
+</html>

@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="admin/_fragments :: head(~{::title})">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>分类新增</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/semantic-ui@2.4.2/dist/semantic.min.css">
+    <link rel="stylesheet" href="../../static/lib/editormd/css/editormd.min.css">
+    <link rel="stylesheet" href="../../static/css/me.css">
+</head>
+<body>
+
+<!--导航-->
+<nav th:replace="admin/_fragments :: menu(2, ${session.navQuery})" class="ui inverted attached segment m-padded-tb-mini m-shadow-small"  style="z-index: 15">
+    <div class="ui container">
+        <div class="ui secondary inverted stackable menu">
+            <h2 class="ui header teal item">5162 后台管理</h2>
+            <a href="#" class="m-item active item m-mobile-hide"><i class="mini home icon"></i> &ensp;博客</a>
+            <a href="#" class="m-item item m-mobile-hide"><i class="mini idea icon"></i> &ensp;分类</a>
+            <a href="#" class="m-item item m-mobile-hide"><i class="mini tags icon"></i> &ensp;标签</a>
+            <div class="right m-item menu m-mobile-hide">
+                <div class="ui dropdown item">
+                    <div class="text">
+                        <img src="https://picsum.photos/id/1/100/100?image=1" alt="" class="ui avatar image">UserName
+                    </div>
+                    <i class="dropdown icon"></i>
+                    <div class="menu">
+                        <a href="#" class="item"><i class="blue mini user icon"></i>个人资料</a>
+                        <a href="#" class="item"><i class="blue mini power icon"></i>退出登录</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <a href="#" class="ui menu toggle black icon button m-right-top m-mobile-show">
+        <i class="sidebar icon"></i>
+    </a>
+</nav>
+<div class="ui attached pointing menu">
+    <div class="ui container">
+        <div class="right menu">
+            <a href="#" th:href="@{/admin/types/input}" class="active teal item">新增</a>
+            <a href="#" th:href="@{/admin/types}" class="item">列表</a>
+        </div>
+    </div>
+</div>
+<!--中间部分-->
+<div class="m-container m-padded-tb-big">
+    <div class="ui container">
+        <form action="#" method="post" th:object="${type}" th:action="*{id}==null ? @{/admin/types} : @{/admin/types/{id}(id=*{id})}"  class="ui form">
+            <input type="hidden" name="id" th:value="*{id}">
+            <div class="required field">
+                <div class="ui left labeled input">
+                    <label class="ui teal basic label">名称</label>
+                    <input type="text" name="name" placeholder="分类名称" th:value="*{name}">
+                </div>
+            </div>
+
+            <!--错误信息显示-->
+            <div class="ui error message"></div>
+            <!--/*/
+            <div class="ui negative message" th:if="${#fields.hasErrors('name')}">
+                <i class="close icon"></i>
+                <div class="header">验证信息失败</div>
+                <p th:errors="*{name}">提交信息不符合规则</p>
+            </div>
+            /*/-->
+
+            <div class="ui right aligned container">
+                <button type="button" class="ui orange button" onclick="window.history.go(-1)">返回</button>
+                <button class="ui blue submit button">提交</button>
+            </div>
+        </form>
+    </div>
+</div>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<!--底部部分-->
+<!--/*/<th:block th:replace="admin/_fragments :: script">/*/-->
+<script src="https://cdn.jsdelivr.net/npm/jquery@3.2/dist/jquery.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/semantic-ui@2.4.2/dist/semantic.min.js"></script>
+<!--/*/</th:block>/*/-->
+
+
+<script>
+    $('.menu.toggle').click(function () {
+        $('.m-item').toggleClass('m-mobile-hide');
+    });
+
+    $('.ui.dropdown').dropdown({
+        on : 'hover'
+    });
+
+    $('.ui.form').form({
+        fields: {
+            name: {
+                identifier: 'name',
+                rules: [{
+                    type: 'empty',
+                    prompt: '类型： 请输入博客类型'
+                }],
+            },
+        }
+    });
+</script>
+</body>
+</html>

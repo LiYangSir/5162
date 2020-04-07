@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="_fragments :: head(~{::title})">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>归档 | 5162</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/semantic-ui@2.4.2/dist/semantic.min.css">
+    <link rel="stylesheet" href="../static/css/me.css">
+</head>
+<body>
+
+
+<!----------导航----------->
+<nav th:replace="_fragments :: menu(4)" class="ui inverted attached segment m-padded-tb-mini m-shadow-small" style=" position: fixed;width: 100%;height:5em;top: 0;left: 0; z-index: 4">
+    <div class="ui container">
+        <div class="ui secondary inverted stackable menu">
+            <h2 class="ui header teal item">5162</h2>
+            <a href="#" class="m-item item m-mobile-hide"><i class="mini home icon"></i> &ensp;首页</a>
+            <a href="#" class="m-item item m-mobile-hide"><i class="mini idea icon"></i> &ensp;分类</a>
+            <a href="#" class="m-item item m-mobile-hide"><i class="mini tags icon"></i> &ensp;标签</a>
+            <a href="#" class="m-item active item m-mobile-hide"><i class="mini clone icon"></i> &ensp;归档</a>
+            <a href="#" class="m-item item m-mobile-hide"><i class="mini info icon"></i> &ensp;关于 5162</a>
+            <div class="right m-item item m-mobile-hide">
+                <div class="ui icon inverted transparent input">
+                    <input type="text" placeholder="Search...">
+                    <i class="search link icon"></i>
+                </div>
+            </div>
+        </div>
+    </div>
+    <a href="#" class="ui menu toggle black icon button m-right-top m-mobile-show">
+        <i class="sidebar icon"></i>
+    </a>
+</nav>
+<!--中间部分-->
+
+<div class="m-blank"></div>
+<div class="m-container-small m-padded-tb-big">
+    <div class="container">
+        <div class="ui top attached padded segment">
+            <div class="ui middle aligned two column grid">
+                <div class="column">
+                    <h3 class="ui teal header">归档</h3>
+                </div>
+                <div class="right aligned column">
+                    共 <h2 class="ui header orange m-inline-block" th:text="${blogCount}"> 114 </h2> 篇博客
+                </div>
+            </div>
+        </div>
+        <th:block th:each="item : ${archiveMap}">
+            <h2 class="ui header center aligned" th:text="${item.key}">2020</h2>
+            <div class="ui vertical fluid menu">
+                <a href="#" th:href="@{/blog/{id}(id=${blog.id})}" target="_blank" class="item" th:each="blog : ${item.value}">
+                <span>
+                    <i class="teal mini circle icon" style="margin-right: 10px"></i><span th:text="${blog.title}">Java 底层是实现BST二分搜索树</span>
+                    <div class="ui teal basic left pointing label m-padded-tiny" th:text="${#dates.format(blog.updateTime, 'MMMdd')}">03月01日</div>
+                </span>
+                    <div class="ui orange basic label m-padded-tinyX" th:text="${blog.flag}">原创</div>
+                </a>
+            </div>
+        </th:block>
+    </div>
+</div>
+<br>
+<br>
+<br>
+<br>
+<br>
+<!--底部部分-->
+<footer th:replace="_fragments :: footer" class="ui vertical inverted segment m-padded-tb-massive">
+    <div class="ui center aligned container">
+        <div class="ui inverted divided stackable grid">
+            <div class="five wide column">
+                <h4 class="ui inverted header">最新文章</h4>
+                <div class="ui inverted link list">
+                    <a href="#" class="item">用户故事（User Story）</a>
+                    <a href="#" class="item">用户故事（User Story）</a>
+                    <a href="#" class="item">用户故事（User Story）</a>
+                </div>
+            </div>
+            <div class="five wide column">
+                <h4 class="ui inverted header">友情链接</h4>
+                <div class="ui inverted link list">
+                    <div class="ui">
+                        <a href="#" class="item">哈工程图书馆</a>
+                        &nbsp;
+                        <a href="#" class="item">校园网主页</a>
+                    </div>
+                    <a href="#" class="item">事务处理</a>
+                </div>
+            </div>
+            <div class="six wide column left aligned">
+                <h4 class="ui inverted header center aligned">5162 简介</h4>
+                <p class="item m-opacity-mini">5162 是一个大家庭，牛人齐聚一堂。这里欢迎大家的加入。嘿嘿哈嘿!!!</p>
+            </div>
+        </div>
+        <div class="ui inverted section divider"></div>
+        <p class="m-text-thin m-text-spaced m-opacity-mini">Copyright © 2020 - 2020 &nbsp;&nbsp; <b class="ui header red">5162</b> &nbsp;&nbsp;Designed by LiYang</p>
+    </div>
+</footer>
+
+<!--/*/<th:block th:replace="_fragments :: script">/*/-->
+<script src="https://cdn.jsdelivr.net/npm/jquery@3.2/dist/jquery.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/semantic-ui@2.4.2/dist/semantic.min.js"></script>
+<!--/*/</th:block>/*/-->
+<script>
+    $('.menu.toggle').click(function () {
+        $('.m-item').toggleClass('m-mobile-hide');
+    });
+</script>
+</body>
+</html>

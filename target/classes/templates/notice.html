@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="_fragments :: head(~{::title})">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>公告 | 5162</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/semantic-ui@2.4.2/dist/semantic.min.css">
+    <link rel="stylesheet" href="../static/css/me.css">
+    <link rel="stylesheet" href="../static/css/typo.css">
+    <link rel="stylesheet" href="../static/css/animate.css">
+    <link rel="stylesheet" href="../static/lib/prism/prism.css">
+    <link rel="stylesheet" href="../static/lib/tocbot/tocbot.css">
+    <link rel="Shortcut Icon" href="../static/images/icon.png" type="image/x-icon" th:href="@{/images/icon.png}"/>
+</head>
+<body>
+<!--导航-->
+<nav th:replace="_fragments :: menu(6)" class="m-nav ui inverted attached segment m-padded-tb-mini m-shadow-small">
+    <div class="ui container">
+        <div class="ui secondary inverted stackable menu">
+            <h2 class="ui header teal item">5162</h2>
+            <a href="#" class="m-item item m-mobile-hide"><i class="mini home icon"></i> &ensp;首页</a>
+            <a href="#" class="m-item item m-mobile-hide"><i class="mini idea icon"></i> &ensp;分类</a>
+            <a href="#" class="m-item item m-mobile-hide"><i class="mini tags icon"></i> &ensp;标签</a>
+            <a href="#" class="m-item item m-mobile-hide"><i class="mini clone icon"></i> &ensp;归档</a>
+            <a href="#" class="m-item item m-mobile-hide"><i class="mini info icon"></i> &ensp;关于 5162</a>
+            <div class="right m-item item m-mobile-hide">
+                <div class="ui icon inverted transparent input">
+                    <input type="text" placeholder="Search...">
+                    <i class="search link icon"></i>
+                </div>
+            </div>
+        </div>
+    </div>
+    <a href="#" class="ui menu toggle black icon button m-right-top m-mobile-show">
+        <i class="sidebar icon"></i>
+    </a>
+</nav>
+<div class="m-blank"></div>
+<!--中间部分-->
+<div id="waypoint" class="m-container-blog m-padded-tb-big animated bounceInUp">
+    <div class="ui container">
+
+        <div class="ui stackable grid">
+            <div class="eleven wide column" style="padding-right: 0">
+                <div class="ui attached padded segment">
+                    <!--            内容信息-->
+                    <h2 class="ui center aligned header m-margin-top" th:text="${blog.title}">Java 底层实现BST二分搜索树 </h2>
+                    <div class="ui inverted mini section divider m-margin-bottom-small"></div>
+                    <div style="float: right; color: grey" class="m-margin-bottom">发布时间：<span>2019-05-04</span></div>
+                    <div id="content" class="article m-padded-lr-responsive m-padded-tb-large typo typo-selection" th:utext="${blog.content}">
+                        <p><i class="serif">Typo.css</i> 的目的是，在一致化浏览器排版效果的同时，构建最适合中文阅读的网页排版。</p>
+
+                        <p class="typo-first">排版是一个麻烦的问题 <sup><a href="#appendix1"># 附录一</a></sup>，需要精心设计，而这个设计却是常被视觉设计师所忽略的。前端工程师更常看到这样的问题，但不便变更。因为在多个 OS 中的不同浏览器渲染不同，改动需要多的时间做回归测试，所以改变变得更困难。而像我们一般使用的
+                            Yahoo、Eric Meyer 和 Alice base.css 中采用的 Reset 都没有很好地考虑中文排版。<i class="serif">Typo.css</i> 要做的就是解决中文排版的问题。</p>
+
+                        <p><strong><i class="serif">Typo.css</i> 测试于如下平台：</strong></p>
+
+                        <p>对于这些，<i class="serif">Typo.css</i> 排版项目的中文偏重注意点，都添加在附录中，详见：</p>
+
+                        <p>
+                            《学而》是《论语》第一篇的篇名。《论语》中各篇一般都是以第一章的前二三个字作为该篇的篇名。《学而》一篇包括16章，内容涉及诸多方面。其中重点是「吾日三省吾身」；「节用而爱人，使民以时」；「礼之用，和为贵」以及仁、孝、信等道德范畴。
+                        </p>
+                    </div>
+                </div>
+            </div>
+            <div class="five wide column">
+                <!--最新推荐-->
+                <div class="ui raised segments" id="aboutMe" style="z-index: 10">
+                    <div class="ui secondary segment">
+                        <div class="column"><i class="bookmark icon"></i>最新公告</div>
+                    </div>
+                    <div class="ui segment" th:each="blog : ${recommendBlogs}">
+                        <a href="#" th:href="@{/blog/{id}(id=${blog.id})}" target="_blank" class="m-color-black" th:text="${blog.title}">C++ 书籍推荐</a>
+                    </div>
+                    <!--/*-->
+                    <div class="ui segment">
+                        <a href="#" class="m-color-black">底层实现自定义数组</a>
+                    </div>
+                    <div class="ui segment">
+                        <a href="#" class="m-color-black">数据结构与算法</a>
+                    </div>
+                    <div class="ui segment">
+                        <a href="#" class="m-color-black">pytorch深度学习推荐</a>
+                    </div>
+                    <!--*/-->
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+<div id="toolbar" class="ui vertical icon buttons m-right-bottom m-fixed" style="display: none">
+    <div id="toTop-button" class="ui icon button"><i class="chevron up icon"></i></div>
+</div>
+<!--底部部分-->
+<footer th:replace="_fragments :: footer" class="ui vertical inverted segment m-padded-tb-massive">
+    <div class="ui center aligned container">
+        <div class="ui inverted divided stackable grid">
+            <div class="five wide column">
+                <h4 class="ui inverted header">最新文章</h4>
+                <div class="ui inverted link list">
+                    <a href="#" class="item">用户故事（User Story）</a>
+                    <a href="#" class="item">用户故事（User Story）</a>
+                    <a href="#" class="item">用户故事（User Story）</a>
+                </div>
+            </div>
+            <div class="five wide column">
+                <h4 class="ui inverted header">友情链接</h4>
+                <div class="ui inverted link list">
+                    <div class="ui">
+                        <a href="#" class="item">哈工程图书馆</a>
+                        &nbsp;
+                        <a href="#" class="item">校园网主页</a>
+                    </div>
+                    <a href="#" class="item">事务处理</a>
+                </div>
+            </div>
+            <div class="six wide column left aligned">
+                <h4 class="ui inverted header center aligned">5162 简介</h4>
+                <p class="item m-opacity-mini">5162 是一个大家庭，牛人齐聚一堂。这里欢迎大家的加入。嘿嘿哈嘿!!!</p>
+            </div>
+        </div>
+        <div class="ui inverted section divider"></div>
+        <p class="m-text-thin m-text-spaced m-opacity-mini">Copyright © 2020 - 2020 &nbsp;&nbsp; <b class="ui header red">5162</b> &nbsp;&nbsp;Designed by LiYang</p>
+    </div>
+</footer>
+<!--/*/<th:block th:replace="_fragments :: script">/*/-->
+<script src="https://cdn.jsdelivr.net/npm/jquery@3.2/dist/jquery.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/semantic-ui@2.4.2/dist/semantic.min.js"></script>
+<script src="../static/lib/prism/prism.js"></script>
+<script src="../static/lib/tocbot/tocbot.min.js"></script>
+<script src="../static/lib/waypoints/jquery.waypoints.min.js"></script>
+<script src="../static/js/post.js"></script>
+<script src="//cdn.jsdelivr.net/npm/jquery.scrollto@2.1.2/jquery.scrollTo.min.js"></script>
+<script src="../static/lib/qrcode/qrcode.min.js"></script>
+<!--/*/</th:block>/*/-->
+<script src="//cdn.jsdelivr.net/npm/mathjax@2.7.5/unpacked/MathJax.js?config=TeX-MML-AM_CHTML" defer></script>
+</body>
+</html>
