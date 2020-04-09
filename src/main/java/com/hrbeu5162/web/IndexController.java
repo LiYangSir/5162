@@ -34,6 +34,9 @@ public class IndexController {
     @Autowired
     private TagService tagService;
 
+    @Autowired
+    private IndexSwiperService indexSwiperService;
+
     @GetMapping("/")
     public String index(@PageableDefault(size = 8, sort = {"updateTime"},
             direction = Sort.Direction.DESC) Pageable pageable,
@@ -46,6 +49,7 @@ public class IndexController {
         model.addAttribute("recommendBlogs", blogService.listRecommendBlogTop(8));
         model.addAttribute("swiperBlogs", blogService.listRecommendBlogTop(3));
         model.addAttribute("users", userService.listUser());
+        model.addAttribute("indexSwiperSrc", indexSwiperService.listIndexSwiperSrc());
         model.addAttribute("notices", noticeService.listNotice());
         return "index";
     }

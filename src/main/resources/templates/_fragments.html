@@ -11,7 +11,7 @@
     <link rel="stylesheet" href="../static/lib/prism/prism.css" th:href="@{/lib/prism/prism.css}">
     <link rel="stylesheet" href="../static/lib/tocbot/tocbot.css" th:href="@{/lib/tocbot/tocbot.css}">
     <link rel="Shortcut Icon" href="../static/images/icon.png" type="image/x-icon" th:href="@{/images/icon.png}"/>
-    <link rel="stylesheet" href="https://unpkg.com/swiper/css/swiper.min.css">
+    <link rel="stylesheet" href="../static/lib/swiper/css/swiper.min.css" th:href="@{/lib/swiper/css/swiper.min.css}">
 
 </head>
 <body>
@@ -85,13 +85,12 @@
     <script src="//cdn.jsdelivr.net/npm/jquery.scrollto@2.1.2/jquery.scrollTo.min.js"></script>
     <script src="../static/lib/qrcode/qrcode.min.js" th:src="@{/lib/qrcode/qrcode.min.js}"></script>
     <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
-    <script src="https://unpkg.com/swiper/js/swiper.min.js"> </script>
+    <script src="../static/lib/swiper/js/swiper.min.js" th:src="@{/lib/swiper/js/swiper.min.js}"></script>
     <script>
         $('.menu.toggle').click(function () {
             $('.m-item').toggleClass('m-mobile-hide');
         });
         $('#newblog-container').load(/*[[@{/footer/newblog}]]*/"/footer/newblog");
-
     </script>
 
 </th:block>

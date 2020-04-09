@@ -6,11 +6,11 @@
     <title>首页 | 5162</title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/semantic-ui@2.4.2/dist/semantic.min.css">
     <link rel="stylesheet" href="../static/css/me.css">
-    <link rel="stylesheet" href="https://unpkg.com/swiper/css/swiper.min.css">
+    <link rel="stylesheet" href="../static/lib/swiper/css/swiper.min.css">
 </head>
 <body>
 <!--导航-->
-<nav th:replace="_fragments :: menu(1)" class="ui inverted attached segment m-padded-tb-mini m-shadow-small">
+<nav th:replace="_fragments :: menu(1)" class="ui inverted attached segment m-padded-tb-mini m-shadow-small animated slideInDown">
     <div class="ui container">
         <div class="ui secondary inverted stackable menu">
             <h2 class="ui header teal item">5162</h2>
@@ -64,23 +64,8 @@
         <div class="ui swiper segment" style="padding: 0">
             <div class="m-image-swiper-container">
                 <div class="swiper-wrapper">
-                    <div class="swiper-slide">
-                        <img src="../static/images/swiper/1.jpg" th:src="@{/upload/swiperIndex/1.jpg}">
-                    </div>
-                    <div class="swiper-slide">
-                        <img src="../static/images/swiper/2.jpg" th:src="@{/upload/swiperIndex/2.jpg}">
-                    </div>
-                    <div class="swiper-slide">
-                        <img src="../static/images/swiper/3.jpg" th:src="@{/upload/swiperIndex/3.jpg}">
-                    </div>
-                    <div class="swiper-slide">
-                        <img src="../static/images/swiper/4.jpg" th:src="@{/upload/swiperIndex/4.jpg}">
-                    </div>
-                    <div class="swiper-slide">
-                        <img src="../static/images/swiper/5.jpg" th:src="@{/upload/swiperIndex/5.jpg}">
-                    </div>
-                    <div class="swiper-slide">
-                        <img src="../static/images/swiper/6.jpg" th:src="@{/upload/swiperIndex/6.jpg}">
+                    <div class="swiper-slide" th:each="swiperSrc : ${indexSwiperSrc}">
+                        <img src="../static/images/swiper/1.jpg" th:src="@{${swiperSrc.getSwiperSrc()}}">
                     </div>
                 </div>
                 <!-- 如果需要分页器 -->
@@ -373,7 +358,7 @@
 <!--/*/<th:block th:replace="_fragments :: script">/*/-->
     <script src="https://cdn.jsdelivr.net/npm/jquery@3.2/dist/jquery.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/semantic-ui@2.4.2/dist/semantic.min.js"></script>
-    <script src="https://unpkg.com/swiper/js/swiper.min.js"> </script>
+    <script src="../static/lib/swiper/js/swiper.min.js"> </script>
     <script>
         $('.menu.toggle').click(function () {
             $('.m-item').toggleClass('m-mobile-hide');
@@ -381,6 +366,7 @@
     </script>
 <!--/*/</th:block>/*/-->
 <script>
+    $("nav").removeClass("m-nav");
     $('.ui.modal')
         .modal('setting', 'transition', 'horizontal flip')
         .modal('show');
@@ -460,9 +446,9 @@
         let $blank = $("#m-image-blank");
         $(window).scroll(function () {
             ($(this).scrollTop() > window.innerHeight / 2) &&
-            ($("nav").removeClass("animated slideInUp").addClass("m-nav animated fadeInDown"),
+            ($("nav").removeClass("animated slideInDown").addClass("m-nav animated fadeInDown"),
                 $blank.css({"display": "block"}))
-            || ($("nav").removeClass("m-nav animated fadeInDown").addClass("animated slideInUp"),
+            || ($("nav").removeClass("m-nav animated fadeInDown").addClass("animated slideInDown"),
                 $blank.css({"display": "none"}))
         });
     };
