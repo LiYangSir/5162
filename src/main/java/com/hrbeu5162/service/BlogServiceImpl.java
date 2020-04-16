@@ -42,6 +42,7 @@ public class BlogServiceImpl implements BlogService {
         return blogRepository.findById(id).get();
     }
 
+    //引入缓存技术
     @Transactional
     @Override
     public Page<Blog> listBlog(Pageable pageable, BlogQuery blog) {
