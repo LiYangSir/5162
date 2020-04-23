@@ -17,7 +17,7 @@
 <nav th:replace="_fragments :: menu(6)" class="m-nav ui inverted attached segment m-padded-tb-mini m-shadow-small">
     <div class="ui container">
         <div class="ui secondary inverted stackable menu">
-            <h2 class="ui header teal item">5162</h2>
+            <h2 class="ui header red item">5162</h2>
             <a href="#" class="m-item item m-mobile-hide"><i class="mini home icon"></i> &ensp;首页</a>
             <a href="#" class="m-item item m-mobile-hide"><i class="mini idea icon"></i> &ensp;分类</a>
             <a href="#" class="m-item item m-mobile-hide"><i class="mini tags icon"></i> &ensp;标签</a>
@@ -134,6 +134,11 @@
 <script src="../static/js/post.js"></script>
 <script src="//cdn.jsdelivr.net/npm/jquery.scrollto@2.1.2/jquery.scrollTo.min.js"></script>
 <script src="../static/lib/qrcode/qrcode.min.js"></script>
+<script>
+    $('.menu.toggle').click(function () {
+        $('.m-item').toggleClass('m-mobile-hide');
+    });
+</script>
 <!--/*/</th:block>/*/-->
 <script src="//cdn.jsdelivr.net/npm/mathjax@2.7.5/unpacked/MathJax.js?config=TeX-MML-AM_CHTML" defer></script>
 </body>

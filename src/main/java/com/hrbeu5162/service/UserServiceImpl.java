@@ -9,6 +9,7 @@ import com.hrbeu5162.util.MD5Utils;
 import com.hrbeu5162.util.MyBeanUtils;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.scheduling.annotation.Async;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -27,7 +28,6 @@ public class UserServiceImpl implements UserService {
     @Autowired
     private BlogRepository blogRepository;
 
-    @Transactional
     @Override
     public User checkUser(String username, String password) {
 
@@ -35,7 +35,6 @@ public class UserServiceImpl implements UserService {
         return user;
     }
 
-    @Transactional
     @Override
     public User findUserByUsername(String userName) {
         return userRepository.findByUserName(userName);
@@ -51,6 +50,7 @@ public class UserServiceImpl implements UserService {
         return userRepository.findByEmail(email);
     }
 
+    @Transactional
     @Override
     public User updateUserMessage(Long id, User user) {
         User user1 = userRepository.findById(id).get();
@@ -62,6 +62,7 @@ public class UserServiceImpl implements UserService {
         return userRepository.save(user1);
     }
 
+    @Transactional
     @Override
     public User save(User user) {
         return userRepository.save(user);

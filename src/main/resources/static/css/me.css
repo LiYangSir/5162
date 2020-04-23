@@ -4,11 +4,28 @@ body {
     background: url("../images/concrete-texture.png");
 }
 
-.m-image-swiper-container{
+.pusher {
+    background: url("../images/concrete-texture.png") !important;
+}
+
+html.ios {
+    overflow-x: hidden;
+    -webkit-overflow-scrolling: touch;
+}
+html.ios,
+html.ios body {
+    height: initial !important;
+}
+
+.m-theme-color{
+    color: #00b5ad;
+}
+
+.m-image-swiper-container {
     overflow: hidden;
     height: 500px;
-    --swiper-theme-color: red;/* 设置Swiper风格 */
-    --swiper-navigation-size: 30px;/* 设置按钮大小 */
+    --swiper-theme-color: red; /* 设置Swiper风格 */
+    --swiper-navigation-size: 30px; /* 设置按钮大小 */
 }
 
 .m-padded-miniX {
@@ -95,6 +112,26 @@ body {
     margin-bottom: 0.3em !important;
 }
 
+.m-margin-tb-tinyX {
+    margin-top: 0.5em !important;
+    margin-bottom: 0.5em !important;
+}
+
+.m-margin-tb-small {
+    margin-top: 0.8em !important;
+    margin-bottom: 0.8em !important;
+}
+
+.m-margin-tb {
+    margin-top: 1em !important;
+    margin-bottom: 1em !important;
+}
+
+.m-margin-tb-big {
+    margin-top: 2em !important;
+    margin-bottom: 2em !important;
+}
+
 .m-margin-top-small {
     margin-top: 0.5em !important;
 }
@@ -108,18 +145,26 @@ body {
 }
 
 .m-margin-bottom-small {
-     margin-bottom: 0.2em !important;
- }
+    margin-bottom: 0.2em !important;
+}
+
+.m-margin-bottom-smallX {
+    margin-bottom: 1em !important;
+}
 
 .m-margin-bottom {
     margin-bottom: 2em !important;
 }
 
 .m-margin-right {
-    margin-right: 1em;
+    margin-right: 1em;!important;
 }
 
-.m-swiper{
+.m-margin-right-tiny {
+    margin-right: 10px;!important;
+}
+
+.m-swiper {
     padding-right: 3em;
     padding-left: 4em;
     padding-bottom: 2em;
@@ -128,6 +173,7 @@ body {
 .m-margin-left {
     margin-left: 1em;
 }
+
 
 
 /*------text---------*/
@@ -225,9 +271,15 @@ body {
     color: #333 !important;
 }
 
+.m-color-grey {
+    color: #586069 !important;
+}
+
+
 /*-----------*/
 .m-mobile-show {
     display: none !important;
+
 }
 
 .m-nav {
@@ -243,20 +295,23 @@ body {
 .m-blank {
     height: 5em !important;
 }
+
 @media screen and (max-width: 768px) {
     .m-mobile-show {
         display: block !important;
     }
 
-    .m-image-swiper-container{
+    .m-image-swiper-container {
         overflow: hidden;
         height: 200px;
-        --swiper-theme-color: blue;/* 设置Swiper风格 */
-        --swiper-navigation-size: 30px;/* 设置按钮大小 */
+        --swiper-theme-color: blue; /* 设置Swiper风格 */
+        --swiper-navigation-size: 30px; /* 设置按钮大小 */
     }
 
     .m-mobile-hide {
         display: none !important;
+        -webkit-animation-name: navBar;
+        animation-name: navBar;
     }
 
     .m-mobile-wide {
@@ -364,6 +419,9 @@ body {
     font-size: medium;
     font-family: "Courier New", -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Helvetica Neue", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
 }
+.m-font{
+    font-family: "Courier New", -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Helvetica Neue", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";!important;
+}
 
 .m-label-show {
     display: block;
@@ -373,24 +431,24 @@ body {
     display: none;
 }
 
-.m-padded-3{
+.m-padded-3 {
     padding-left: 0;
     padding-top: 0;
     padding-bottom: 0;
 }
 
-.swiper-container{
-    --swiper-theme-color: teal;/* 设置Swiper风格 */
-    --swiper-navigation-size: 30px;/* 设置按钮大小 */
+.swiper-container {
+    --swiper-theme-color: teal; /* 设置Swiper风格 */
+    --swiper-navigation-size: 30px; /* 设置按钮大小 */
 }
 
-.m-swiper-container{
+.m-swiper-container {
     overflow: hidden;
     height: 20px;
     width: 100%;
 }
 
-.swiper-slide img{
+.swiper-slide img {
     width: 100%;
     height: auto;
 }
@@ -401,8 +459,27 @@ body {
     box-shadow: 0 0 0 rgba(0, 0, 0, 0);
     transition: all 0.5s ease;
 }
+
 /* change style */
 .fixed.overlay {
     position: fixed;
     padding: 1em;
+}
+
+.iconfont {
+    font-size: 30px;!important;
+}
+
+@keyframes navBar
+{
+    from {
+        -webkit-transform: translate3d(0, -100%, 0);
+        transform: translate3d(0, -100%, 0);
+        visibility: visible;
+    }
+
+    to {
+        -webkit-transform: translate3d(0, 0, 0);
+        transform: translate3d(0, 0, 0);
+    }
 }

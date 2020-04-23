@@ -41,10 +41,10 @@
     <div class="ui container">
         <div class="ui stackable grid">
             <div class="eleven wide column">
-                <div class="ui top attached segment">
-                    <div class="ui horizontal link list">
+                <div class="ui top attached segment m-padded-tinyX">
+                    <div class="ui horizontal text menu" style="margin: 0">
                         <div class="item">
-                            <img src="https://picsum.photos/id/1/100/100?image=1" alt="" class="ui avatar image" th:src="${blog.user.avatar}">
+                            <img src="https://picsum.photos/id/1/100/100?image=1" alt="" class="ui avatar image" th:src="${blog.user.avatar}">&ensp;
                             <div class="content"><a href="#" class="header" th:text="${blog.user.nickName}">李扬</a></div>
                         </div>
                         <div class="item">
@@ -542,7 +542,7 @@ h5,h6{font-size:1em;}
             </div>
             <div class="five wide column">
                 <!----------标签------------->
-                <div class="ui raised segments m-margin-top-large">
+                <div class="ui raised segments">
                     <div class="ui secondary segment">
                         <div class="ui two column grid">
                             <div class="column"><i class="tags icon"></i>标签</div>
@@ -552,13 +552,13 @@ h5,h6{font-size:1em;}
                         </div>
                     </div>
                     <div class="ui teal padded segment">
-                        <a href="#" target="_blank" class="ui teal basic left pointing label m-margin-tb-tiny" th:each="tag : ${tags}">
+                        <a href="#" target="_blank" class="ui image label m-margin-tb-tiny" style="margin-right: 10px" th:each="tag : ${tags}">
                             <span th:text="${tag.name}">语言</span>
                             <div class="detail" th:text="${#arrays.length(tag.blogs)}">23</div>
                         </a>
                         <!--/*-->
-                        <a href="#" target="_blank" class="ui teal basic left pointing label m-margin-tb-tiny">曹骆龙<div class="detail">23</div></a>
-                        <a href="#" target="_blank" class="ui teal basic left pointing label m-margin-tb-tiny">江海龙<div class="detail">23</div></a>
+                        <a href="#" target="_blank" class="ui image label m-margin-tb-tiny" style="margin-right: 10px">曹骆龙<div class="detail">23</div></a>
+                        <a href="#" target="_blank" class="ui image label m-margin-tb-tiny" style="margin-right: 10px">江海龙<div class="detail">23</div></a>
                         <!--*/-->
                     </div>
                 </div>
@@ -568,7 +568,7 @@ h5,h6{font-size:1em;}
                         <div class="column"><i class="bookmark icon"></i>最新推荐</div>
                     </div>
 
-                    <div class="ui segment" th:each="blog : ${recommendBlogs}">
+                    <div class="ui teal segment" th:each="blog : ${recommendBlogs}">
                         <a href="#" th:href="@{/blog/{id}(id=${blog.id})}" target="_blank" class="m-color-black" th:text="${blog.title}">C++ 书籍推荐</a>
                     </div>
 
@@ -595,8 +595,6 @@ h5,h6{font-size:1em;}
             </div>
 
         </div>
-
-
     </div>
 </div>
 
@@ -604,12 +602,9 @@ h5,h6{font-size:1em;}
     <div id="toTop-button" class="ui icon button"><i class="chevron up icon"></i></div>
 </div>
 
-<div class="ui toc-container flowing popup">
-    生成目录
-</div>
 <br>
 <br>
-<div class="m-fixed m-left-center">
+<div class="m-fixed m-left-center m-mobile-hide">
     <button class="ui wechat icon button"><i class="weixin icon large"></i></button>
 </div>
 <div id="qrCode" class="ui wechat-qr flowing popup transition hidden"></div>
@@ -654,6 +649,11 @@ h5,h6{font-size:1em;}
 <script src="../static/js/post.js"></script>
 <script src="//cdn.jsdelivr.net/npm/jquery.scrollto@2.1.2/jquery.scrollTo.min.js"></script>
 <script src="../static/lib/qrcode/qrcode.min.js"></script>
+<script>
+    $('.menu.toggle').click(function () {
+        $('.m-item').toggleClass('m-mobile-hide');
+    });
+</script>
 <!--/*/</th:block>/*/-->
 
 <script th:inline="javascript">

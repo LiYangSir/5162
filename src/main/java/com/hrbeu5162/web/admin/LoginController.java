@@ -38,9 +38,6 @@ public class LoginController {
             NavQuery navQuery = new NavQuery(username, user.getAvatar(), user.isTeacher(), user.isRoot());
             session.setAttribute("user", username);
             session.setAttribute("navQuery", navQuery);
-//            session.setAttribute("avatar",user.getAvatar());
-//            session.setAttribute("teacher",user.isTeacher());
-//            session.setAttribute("root",user.isRoot());
             return "admin/index";
         } else {
             attributes.addFlashAttribute("messages", "用户名或者密码错误");

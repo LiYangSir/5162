@@ -9,7 +9,6 @@
 </head>
 <body>
 
-
 <!--导航-->
 <nav th:replace="admin/_fragments :: menu(1, ${session.navQuery})" class="ui inverted attached segment m-padded-tb-mini m-shadow-small" style="z-index: 15">
     <div class="ui container">
@@ -77,20 +76,20 @@
                             </div>
                         </div>
                         <div class="field">
-                            <a type="button" id="search-btn" class="ui teal basic mini button"><i class="search icon"></i>搜索</a>
+                            <a type="button" id="search-btn" class="ui basic mini button"><i class="search icon"></i>搜索</a>
                         </div>
 
                     </div>
                 </div>
                 <div class="ui five wide column right aligned">
                     <div class="field">
-                        <a type="button" th:href="@{/admin/blogs/input}" class="ui teal basic mini button"><i class="add icon"></i>新增</a>
+                        <a type="button" th:href="@{/admin/blogs/input}" class="ui mini button"><i class="add icon"></i>新增</a>
                     </div>
                 </div>
             </div>
         </div>
         <div id="table-container">
-            <table th:fragment="blogList" class="ui compact teal table center aligned">
+            <table th:fragment="blogList" class="ui compact table center aligned">
                 <thead>
                 <tr>
                     <th>序号</th>
@@ -133,6 +132,7 @@
                                 </a>
 
                                 <a onclick="page(this)" th:each="i: ${#numbers.sequence(1,page.getTotalPages() == 0 ? 1 : page.getTotalPages())}" th:attr="data-page=${i}-1" class="item" th:text="${i}">1</a>
+
 
                                 <a onclick="page(this)" th:attr="data-page=${page.number} < (${page.totalPages} - 1) ? (${page.number}+1) : ${page.number}" class="item" th:classappend="${page.number} < (${page.totalPages} - 1) ? '': 'disabled'">
                                     <i class="right chevron icon"></i>

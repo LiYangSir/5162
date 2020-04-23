@@ -91,7 +91,7 @@ public class BlogController {
     }
 
     @PostMapping("/blogs")
-    public String post(@RequestParam("firstPictures") MultipartFile srcFile, Blog blog ,RedirectAttributes attributes, HttpSession session) {
+    public String post(@RequestParam(value = "firstPictures", required = false) MultipartFile srcFile, Blog blog ,RedirectAttributes attributes, HttpSession session) {
         blog.setUser(userService.findUserByUsername((String)session.getAttribute("user")));
         if (srcFile.isEmpty()){
             if (blog.getFirst()==null || blog.getFirst().equals(""))
@@ -107,8 +107,8 @@ public class BlogController {
             b = blogService.saveBlog(blog);
         else
             b = blogService.updateBlog(blog.getId(), blog);
-        blog.setTags(tagService.listTag(blog.getTagIds()));
-        blogService.saveBlog(blog);
+        b.setTags(tagService.listTag(blog.getTagIds()));
+        blogService.saveBlog(b);
         if (b == null)
             attributes.addFlashAttribute("message", "操作失败");
         else
